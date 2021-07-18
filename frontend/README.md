@@ -77,6 +77,85 @@ Finally its done. now we can do our tailwindcss work
 
 - Lets Make the Home Page Done
 
+In this section we neeed to make 3 component. so make a folder `src/components` and make these files `Header`, `Bike`, `Footer`
+
+```js
+// Header.js
+import React from "react";
+
+export default function Header() {
+  return (
+    <div className="flex justify-center text-4xl bg-gray-400">
+      Sports Bike Showroom
+    </div>
+  );
+}
+```
+
+```js
+// Bike.js
+import React from "react";
+
+export default function Bike() {
+  return (
+    <div className="bg-gray-100">
+      <div className="flex justify-center space-x-4">
+        <div>
+          <img src="/images/bmw1000rr.jpg" alt="bike photo" />
+        </div>
+        <div>
+          <p>Model: S1000RR</p>
+          <p>Year: 2021</p>
+          <p>Price: 19000 GBP</p>
+          <p>Engine Speed: 1000cc</p>
+        </div>
+      </div>
+      <div className="bg-black h-1"></div>
+    </div>
+  );
+}
+```
+
+```js
+//Footer.js
+import React from "react";
+
+export default function Footer() {
+  return (
+    <div className="bg-blue-300 h-12 flex justify-center items-center">
+      <h4>All Rights Reserved</h4>
+    </div>
+  );
+}
+```
+
+Finally add these 3 components to the `App.js` file
+
+```js
+// App.js
+import Header from "./components/Header";
+import Bike from "./components/Bike";
+import Footer from "./components/Footer";
+
+function App() {
+  return (
+    <div className="font-mono flex flex-col h-screen justify-between">
+      <Header />
+      <Bike />
+      <Bike />
+      <Bike />
+      <Bike />
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
+```
+
+Now the frontend is look like this
+![alt text](https://github.com/Maxyee/sports-bike-showroom/blob/master/frontend/public/images/bikeScreen.png)
+
 - Install React Router Dom different page navigation
 - Install React-Redux to the project
 - Implement the architecure of redux into the project `action`, `reducer`, `store`, `provider`
