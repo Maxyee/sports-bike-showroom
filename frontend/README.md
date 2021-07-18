@@ -6,10 +6,10 @@
 
 ```bash
 npx create-react-app project-name
-
 ```
 
 - Clean the unnessary file from react & make it fresh
+
 - Install Tailwindcss to the react project
 - Install React-Redux to the project
 - Implement the architecure of redux into the project `action`, `reducer`, `store`, `provider`

@@ -34,7 +34,7 @@
 - Add Bike Page
 - All Bike list Page
 
-## Projec Concept Backend
+## Project Concept Backend
 
 - Rest API service
 - CRUD method for bike
