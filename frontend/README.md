@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Sports Bike Showroom Frontend App
 
 1. At first we need to do some work before starting project
 
