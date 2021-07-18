@@ -75,6 +75,8 @@ import "./index.css";
 You must restart the project for watching the output.
 Finally its done. now we can do our tailwindcss work
 
+- Lets Make the Home Page Done
+
 - Install React Router Dom different page navigation
 - Install React-Redux to the project
 - Implement the architecure of redux into the project `action`, `reducer`, `store`, `provider`
