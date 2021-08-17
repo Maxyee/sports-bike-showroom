@@ -157,6 +157,57 @@ Now the frontend is look like this
 ![alt text](https://github.com/Maxyee/sports-bike-showroom/blob/master/frontend/public/images/bikeScreen.png)
 
 - Install React Router Dom different page navigation
+
+```bash
+npm install react-router-dom
+```
+
+now we are going to make a page called `AddBike.js`
+
+```js
+
+```
+
+after adding this code. now we need to import our browser router into `app.js`
+
+```js
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+function App() {
+  return (
+    <div className="font-mono flex flex-col h-screen justify-between">
+      <Router>
+        <Switch>
+          <Route exact path="/addbike">
+            <Header />
+            <AddBike />
+            <Footer />
+          </Route>
+          <Route exact path="/">
+            <Header />
+            <Bike />
+            <Bike />
+            <Bike />
+            <Bike />
+            <Footer />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
+  );
+}
+```
+
+into the `components/Header.js` file we Linked our new `addbike` page
+
+```js
+import { Link } from "react-router-dom";
+
+<Link to="/addbike">
+  <button className="bg-gray-200">AddBike</button>
+</Link>;
+```
+
 - Install React-Redux to the project
 - Implement the architecure of redux into the project `action`, `reducer`, `store`, `provider`
 - Make Home page
