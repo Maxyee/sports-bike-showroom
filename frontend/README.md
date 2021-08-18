@@ -324,7 +324,64 @@ import { Link } from "react-router-dom";
 ```
 
 - Install React-Redux to the project
+
+```bash
+npm install react-redux redux redux-thunk js-cookie
+```
+
 - Implement the architecure of redux into the project `action`, `reducer`, `store`, `provider`
+
+so this is the one of the interesting part of React with Redux.
+
+lets create a folder called `redux` and then make there more folder there
+
+```bash
+mkdir src/redux
+mkdir src/redux/store
+mkdir src/redux/reducers
+mkdir src/redux/actions
+```
+
+now create a file called `store.js` into the `src/redux/store`
+
+```js
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import Cookie from "js-cookie";
+
+//const userInfo = Cookie.getJSON('userInfo') || null;
+
+const initialState = {
+  //userSignin: { userInfo },
+};
+
+const reducer = combineReducers({});
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  reducer,
+  initialState,
+  composeEnhancer(applyMiddleware(thunk))
+);
+export default store;
+```
+
+now we need to import this store to our root `index.js` file
+
+```js
+//index.js
+import { Provider } from "react-redux";
+import store from "./redux/store/store";
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+```
+
 - Make Home page
 - Test Home Page
 - Make Add Bike Page

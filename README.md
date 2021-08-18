@@ -12,6 +12,7 @@
 ## Backend Tech
 
 - Express
+- GraphQL
 - Rest Api
 - Mocha
 - Code Coverage
