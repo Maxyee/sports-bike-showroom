@@ -382,6 +382,123 @@ ReactDOM.render(
 );
 ```
 
+so lets complete redux with a simple `SignIn` actions.
+
+make file called `userActions.js` and install dependencies `axios`
+
+```bash
+touch src/redux/actions/userActions.js
+
+npm install axios
+```
+
+another folder called `constants` we need and make a folder `userConstants.js`
+
+```bash
+mkdir src/constants
+
+touch src/constants/userConstants.js
+
+```
+
+```js
+//userConstants.js
+export const USER_SIGNIN_REQUEST = "USER_SIGNIN_REQUEST";
+export const USER_SIGNIN_SUCCESS = "USER_SIGNIN_SUCCESS";
+export const USER_SIGNIN_FAIL = "USER_SIGNIN_FAIL";
+```
+
+```js
+//userActions.js
+import Axios from "axios";
+import Cookie from "js-cookie";
+
+import {
+  USER_SIGNIN_REQUEST,
+  USER_SIGNIN_SUCCESS,
+  USER_SIGNIN_FAIL,
+} from "../../constants/userConstants";
+
+const signin = (email, password) => async (dispatch) => {
+  dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
+  try {
+    const { data } = await Axios.post("https://importyourOwnAPI", {
+      email,
+      password,
+    });
+    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+    Cookie.set("userInfo", JSON.stringify(data));
+  } catch (error) {
+    dispatch({ type: USER_SIGNIN_FAIL, payload: error.message });
+  }
+};
+
+export { signin };
+```
+
+now we need to work with reducers. make a file called `userReducers.js`
+
+```bash
+
+touch src/redux/reducers/userReducers.js
+```
+
+```js
+//userReducers.js
+import {
+  USER_SIGNIN_REQUEST,
+  USER_SIGNIN_SUCCESS,
+  USER_SIGNIN_FAIL,
+} from "../../constants/userConstants";
+
+function userSigninReducer(state = {}, action) {
+  switch (action.type) {
+    case USER_SIGNIN_REQUEST:
+      return { loading: true };
+    case USER_SIGNIN_SUCCESS:
+      return { loading: false, userInfo: action.payload };
+    case USER_SIGNIN_FAIL:
+      return { loading: false, error: action.payload };
+    case USER_LOGOUT:
+      return {};
+    default:
+      return state;
+  }
+}
+
+export { userSigninReducer };
+```
+
+we completed our actions and reducers. now we have to combine this 2 with store
+
+```js
+//store.js
+// our new store will look like
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import Cookie from "js-cookie";
+import { userSigninReducer } from "../reducers/userReducers";
+
+//const userInfo = JSON.parse(Cookie.get("userInfo")) || null;
+const userInfo = Cookie.get("userInfo") || null;
+const initialState = {
+  userSignin: { userInfo },
+};
+
+const reducer = combineReducers({
+  userSignin: userSigninReducer,
+});
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  reducer,
+  initialState,
+  composeEnhancer(applyMiddleware(thunk))
+);
+export default store;
+```
+
 - Make Home page
 - Test Home Page
 - Make Add Bike Page
