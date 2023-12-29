@@ -499,11 +499,14 @@ const store = createStore(
 export default store;
 ```
 
-- Make Home page
+- Make Home page `Bike.js`
 - Test Home Page
-- Make Add Bike Page
+
+lets start testing our `Bike.js` or Home page
+
+- Make Add Bike Page `AddBike.js`
 - Test Add Bike page
-- Make All Bike Page
+- Make All Bike Page `AllBike.js`
 
 right now I made a page called `AllBike.js` and put this code:
 
