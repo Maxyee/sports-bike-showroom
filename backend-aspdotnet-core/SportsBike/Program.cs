@@ -1,3 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using SportsBike.Database;
+
 namespace SportsBike
 {
     public class Program
@@ -9,6 +15,12 @@ namespace SportsBike
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+
+            // Configure DbContext and connection string
+            builder.Services.AddDbContext<MotorcycleDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
